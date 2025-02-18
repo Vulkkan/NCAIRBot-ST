@@ -98,11 +98,6 @@ device = torch.device(
 model.to(device)
 
 
-'''
-(Helper function for generating response)
-Takes context and prompt,
-Returns a dict of answers and their confidences
-'''
 def answers(context, prompt) -> dict[str, float]:
     inputs = tokenizer.encode_plus(
         prompt, context,
@@ -142,11 +137,6 @@ def answers(context, prompt) -> dict[str, float]:
     return answer, confidence
 
 
-'''
-Takes prompt and context
-Passes through answers() to get a dict of answers and votes
-Returns the highest-voted answer
-'''
 def reply(prompt, context) -> str:
     answers_dict = {}
     for i, part in enumerate(context):
